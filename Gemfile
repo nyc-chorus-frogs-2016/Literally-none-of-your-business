@@ -12,7 +12,9 @@ gem 'activerecord'
 gem 'bcrypt-ruby'
 
 gem 'rake'
-
+gem 'pry'
+gem 'pry-nav'
+gem 'bcrypt'
 gem 'shotgun'
 
 group :test do
