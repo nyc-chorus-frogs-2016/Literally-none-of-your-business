@@ -1,0 +1,4 @@
+please create a choice for your question: <%= @question.text %>
+<div id="new-choice-form">
+  <%= erb :'/choices/_form', layout: false, locals: {question: @question} %>
+</div>

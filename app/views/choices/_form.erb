@@ -1,0 +1,14 @@
+<form id='create-choice' action='/choices' method='post'>
+  <input type='hidden' name='question[question_id]' value="<%= question.id%>">
+  <ul>
+    <li>
+      <label for='choice[text]'>Text:</label>
+      <input type='text' name='choice[text]' placeholder="Type your answer here">
+    </li>
+    <li>
+      <input type='submit' value='Next' />
+    </li>
+  </ul>
+</form>
+
+<a href="'/questions/<%= question.id %>/show">This question is complete, go to see it.</a>

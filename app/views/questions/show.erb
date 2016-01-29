@@ -1,0 +1,11 @@
+<h1> Here is question <%= @question.text %> from survey: <%= @survey.title %> </h1>
+
+<div id="question-details">
+  <%= @question.text %>
+  <%= @survey.creator.username %>
+  <ul>
+    <% @choices.each do |choice| %>
+      <li><%= choice.text %></li>
+    <% end %>
+  </ul>
+</div>
