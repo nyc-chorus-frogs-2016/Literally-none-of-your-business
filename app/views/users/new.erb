@@ -1,0 +1,41 @@
+<section class='login-form'>
+  <%if logged_in? %>
+  <h2>User <%=current_user.username%> is currently logged in. Log out?</h2>
+    <form action='/sessions/logout' method='post'>
+      <input type='hidden' name='_method' value='delete'/>
+      <input type='submit' value='Log Out' />
+    </form>
+  <%else%>
+    <h3>Log In</h3>
+    <form action='/sessions' method='post'>
+      <ul>
+        <li>Username: <input type='text' name='username'/></li>
+        <li>Password: <input type='password' name='password'/></li>
+        <li><input type='submit' value='Log In' /></li>
+      </ul>
+    </form>
+</section>
+
+<section class='create-form'>
+  <h3>Create an Account</h3>
+  <form action='/users' method='post'>
+    <ul>
+      <li>
+        <label for='users[username]'>Username:</label>
+        <input type='text' name='users[username]'/>
+      </li>
+      <li>
+        <label for='users[password1]'>Password:</label>
+        <input type='password' name='users[password1]'/>
+      </li>
+      <li>
+        <label for='users[password2]'>Confirm Password:</label>
+        <input type='password' name='users[password2]'/>
+     </li>
+      <li>
+        <input type='submit' value='Create My Account' />
+      </li>
+    </ul>
+  </form>
+</section>
+<%end%>
