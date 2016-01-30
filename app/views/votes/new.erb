@@ -1,10 +1,16 @@
-<p>You're taking <%=@survey.title%></p>
+<p><%=@survey.title.capitalize%> Survey</p>
 <% @questions.each do |question| %>
   <% if !question.answered?(current_user) %>
     <ul>
       <li><%= question.text%></li>
     </ul>
-    <%= erb :'/votes/_voting_form', layout: false, locals: {question: question, taken_survey: @taken_survey} %>
+    <div id="voting-form">
+      <%= erb :'/votes/_voting_form', layout: false, locals: {question: question, taken_survey: @taken_survey} %>
+    </div>
   <%end%>
 <%end%>
 
+<% if @questions.select {|question| question.answered?(current_user) == true }.length == @questions.length %>
+  <p><%= current_user.username %>, You have completed this survey! <%= @survey.creator.username %> says thank you. </p>
+  <a href="/">Go back to the Home bpage to take another survey</a>
+<% end %>
