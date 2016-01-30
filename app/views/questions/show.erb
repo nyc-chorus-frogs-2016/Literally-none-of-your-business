@@ -1,7 +1,8 @@
 <h1> Here is question: <%= @question.text %> from survey: <%= @survey.title %> </h1>
 
 <div id="question-details">
-  <p>question:<%= @question.text %></p>
+  <p>question:<%= @question.text %></p> 
+  
   <p>creator:<%= @survey.creator.username %></p>
   <ul>
     <% @choices.each do |choice| %>
