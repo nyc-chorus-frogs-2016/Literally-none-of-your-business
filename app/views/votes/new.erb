@@ -1,10 +1,12 @@
-<p>You're taking <%=@survey.title%></p>
+<p><%=@survey.title.capitalize%> Survey</p>
 <% @questions.each do |question| %>
   <% if !question.answered?(current_user) %>
     <ul>
       <li><%= question.text%></li>
     </ul>
-    <%= erb :'/votes/_voting_form', layout: false, locals: {question: question, taken_survey: @taken_survey} %>
+    <div id="voting-form">
+      <%= erb :'/votes/_voting_form', layout: false, locals: {question: question, taken_survey: @taken_survey} %>
+    </div>
   <%end%>
 <%end%>
 
