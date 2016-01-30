@@ -11,3 +11,15 @@ post '/choices' do
 		redirect "/oops"
 	end
 end
+
+get '/questions/:question_id/choices/:id/edit' do
+	@question = Question.find_by(id: params[:question_id])
+	@choice = Choice.find_by(id: params[:id])
+	erb :'/choices/edit'
+end
+
+put '/choices/:id' do
+	@choice = Choice.find_by(id: params[:id])
+	@choice.update_attributes(params[:choice])
+	redirect "/questions/#{@choice.question_id}/show"
+end

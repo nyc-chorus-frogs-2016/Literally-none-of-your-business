@@ -21,3 +21,14 @@ get '/questions/:id/show' do
   @choices = @question.choices
   erb :'/questions/show'
 end
+
+get '/questions/:id/edit' do
+	@question = Question.find_by(id: params[:id])
+	erb :'/questions/edit'
+end
+
+put '/questions/:id' do
+	@question = Question.find_by(id: params[:id])
+	@question.update_attributes(params[:question])
+	redirect "/questions/#{@question.id}/show"
+end

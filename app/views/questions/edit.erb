@@ -1,0 +1,10 @@
+<h1> Edit Question </h1>
+<form action='/questions/<%=@question.id%>' method='post'>
+  <input type='hidden' name='_method' value='put'>
+  <ul>
+    <li>
+      <label for='question[text]'>Question</label>
+      <input type='text' name='question[text]' value='<%=@question.text%>'>
+    </li>
+  </ul>
+  <input type='submit' value='update question'/>
