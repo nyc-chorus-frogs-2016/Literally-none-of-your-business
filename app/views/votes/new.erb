@@ -8,3 +8,7 @@
   <%end%>
 <%end%>
 
+<% if @questions.select {|question| question.answered?(current_user) == true }.length == @questions.length %>
+  <p><%= current_user.username %>, You have completed this survey! <%= @survey.creator.username %> says thank you. </p>
+  <a href="/">Go back to the Home bpage to take another survey</a>
+<% end %>
