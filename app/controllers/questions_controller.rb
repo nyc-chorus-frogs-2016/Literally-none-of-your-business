@@ -16,10 +16,10 @@ post '/questions' do
 end
 
 get '/questions/:id/show' do
-  @question = Question.find_by(id: params[:id])
-  @survey = @question.survey
-  @choices = @question.choices
-  erb :'/questions/show'
+	@question = Question.find_by(id: params[:id])
+	@survey = @question.survey
+	@choices = @question.choices
+	erb :'/questions/show'
 end
 
 get '/questions/:id/edit' do
@@ -31,4 +31,10 @@ put '/questions/:id' do
 	@question = Question.find_by(id: params[:id])
 	@question.update_attributes(params[:question])
 	redirect "/questions/#{@question.id}/show"
+end
+
+delete '/questions/:id' do
+	@question = Question.find_by(id: params[:id])
+	@question.destroy
+	redirect "/surveys/#{@question.survey_id}"
 end

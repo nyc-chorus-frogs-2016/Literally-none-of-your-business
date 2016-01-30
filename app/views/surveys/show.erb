@@ -2,6 +2,10 @@
 <ul>
 <%@survey.questions.each do |question|%>
 Question: <a href="/questions/<%=question.id%>/show"><%= question.text %></a>  
+<form action='/questions/<%=question.id%>' method='post'>
+  	<input type='hidden' name='_method' value='delete'/>
+  	<input type='submit' value='delete'/>
+  </form>
 <a href="/questions/<%=question.id%>/edit">Edit</a>
 <% question.choices.each do |choice|%>
 <li><%= choice.text%> </li>
