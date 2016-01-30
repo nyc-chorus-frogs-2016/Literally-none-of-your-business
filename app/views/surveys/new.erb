@@ -1,7 +1,7 @@
 <% if logged_in? %>
   <h1> Make a new survey</h1>
   <div id="new_survey_form">
-  	<%= erb :'/surveys/_form', layout: false%>
+    <%= erb :'/surveys/_form', layout: false%>
   </div>
 <% else %>
   <p>You must be logged in in order to create a new survey. Please <a href="/users/new">login or register</a>.</p>
