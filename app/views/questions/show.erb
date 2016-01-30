@@ -2,7 +2,6 @@
 
 <div id="question-details">
   <p>question:<%= @question.text %></p>
-
   <p>creator:<%= @survey.creator.username %></p>
   <ul>
     <% @choices.each do |choice| %>
@@ -10,8 +9,8 @@
       <% if @survey.active? == 0 %>
         <a href="/questions/<%=@question.id%>/choices/<%=choice.id%>/edit">Edit</a>
         <form action='/choices/<%=choice.id%>' method='post'>
-        	<input type='hidden' name='_method' value='delete'/>
-        	<input type='submit' value='delete'/></li>
+          <input type='hidden' name='_method' value='delete'/>
+          <input type='submit' value='delete'/></li>
         </form>
       <% end %>
     <% end %>
