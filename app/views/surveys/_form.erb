@@ -1,0 +1,17 @@
+<form id='create-survey' action='/surveys' method='post'>
+  <input type='hidden' name='survey[creator_id]' value="<%= current_user.id%>">
+  <input type='hidden' name='survey[active?]' value="0">
+  <ul>
+    <li>
+      <label for='survey[title]'>Title:</label>
+      <input type='text' name='survey[title]'>
+    </li>
+    <li>
+      <label for='survey[description]'>description:</label>
+      <textarea rows="10" cols="70" name='survey[description]'></textarea>
+    </li>
+    <li>
+      <input type='submit' value='Go to question form' />
+    </li>
+  </ul>
+</form>

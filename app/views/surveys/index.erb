@@ -1,0 +1,9 @@
+<h1> Welcome <%=current_user.username.capitalize%>!</h1>
+<ul>
+	<%@surveys.each do |survey| %>
+	<li><a href="/surveys/<%=survey.id%>"><%= survey.title%></a></li>	
+	<%= survey.description%>
+	<a href=""><%= survey.creator.username %></a>	
+	<%end%>
+</ul>
+

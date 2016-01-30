@@ -1,0 +1,12 @@
+<form id='create-question' action='/questions' method='post'>
+  <input type='hidden' name='question[survey_id]' value="<%= survey.id%>">
+  <ul>
+    <li>
+      <label for='question[text]'>Text:</label>
+      <input type='text' name='question[text]'>
+    </li>
+    <li>
+      <input type='submit' value='Next' />
+    </li>
+  </ul>
+</form>

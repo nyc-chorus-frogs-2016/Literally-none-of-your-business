@@ -1,0 +1,8 @@
+<% if logged_in? %>
+  <h1> Make a new question on survey "<%=@current_survey.title%>"</h1>
+  <div id="new_question_form">
+  	<%= erb :'/questions/_form', layout: false, locals: {survey: @current_survey}%>
+  </div>
+<% else %>
+  <p>You must be logged in in order to create a new survey. Please <a href="/users/new">login or register</a>.</p>
+<% end %>

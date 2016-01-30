@@ -18,6 +18,11 @@
   <title></title>
 </head>
 <body>
+  <a href="/">Home</a>
+  <% if logged_in? %>
+    <a href="/users/new">Logout</a>
+    <a href="/surveys/new">Create a New Survey</a>
+  <% end %>
 <div id="content">
   <%= yield %>
 </div>

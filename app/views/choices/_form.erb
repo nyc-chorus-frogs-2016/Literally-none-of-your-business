@@ -1,0 +1,7 @@
+<form id='create-choice' action='/choices' method='post'>
+  <input type='hidden' name='choice[question_id]' value="<%= question.id%>">
+      <label for='choice[text]'>Text:</label>
+      <input type='text' name='choice[text]' placeholder="Type your answer here">
+      <input type='submit' value='Next' />
+</form>
+
