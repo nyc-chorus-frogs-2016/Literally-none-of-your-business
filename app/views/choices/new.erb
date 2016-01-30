@@ -1,4 +1,12 @@
-please create a choice for your question: <%= @question.text %>
+<h1>Please create a choice for your question: <%= @question.text %></h1>
+<h2>Your current choices are: </h2>
+<ul>
+	<%@question.choices.each do |choice|%>
+	<li><%=choice.text%></li>
+	<%end%> 
+</ul>
+
 <div id="new-choice-form">
-  <%= erb :'/choices/_form', layout: false, locals: {question: @question} %>
+	<%= erb :'/choices/_form', layout: false, locals: {question: @question} %>
 </div>
+<a href="/questions/<%= @question.id %>/show">This question is complete, go to see it.</a>

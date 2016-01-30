@@ -1,11 +1,14 @@
 <h1> Here is question <%= @question.text %> from survey: <%= @survey.title %> </h1>
 
 <div id="question-details">
-  <%= @question.text %>
-  <%= @survey.creator.username %>
+  <p>question:<%= @question.text %></p>
+  <p>creator:<%= @survey.creator.username %></p>
   <ul>
     <% @choices.each do |choice| %>
       <li><%= choice.text %></li>
     <% end %>
   </ul>
 </div>
+
+<a href="/surveys/<%=@question.survey_id%>/questions/new">Add another question</a>
+<a href="/surveys/<%=@survey.id%>">View/Submit the whole survey</a>

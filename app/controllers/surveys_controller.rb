@@ -24,3 +24,8 @@ post '/surveys' do
   	end
 end
 
+get '/surveys/:id' do
+  @survey = Survey.find_by(id: params[:id])
+  @survey.update_attributes(active?: 1)
+  erb :'/surveys/show'
+end

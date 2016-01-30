@@ -1,4 +1,4 @@
-<h1> Welcome <%=current_user.username%> to Page!</h1>
+<h1> Welcome <%=current_user.username.capitalize%>!</h1>
 <ul>
 	<%@surveys.each do |survey| %>
 	<li><a href="/surveys/<%=survey.id%>"><%= survey.title%></a></li>	
