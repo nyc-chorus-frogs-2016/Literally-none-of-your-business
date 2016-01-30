@@ -23,3 +23,10 @@ put '/choices/:id' do
 	@choice.update_attributes(params[:choice])
 	redirect "/questions/#{@choice.question_id}/show"
 end
+
+delete '/choices/:id' do
+	choice = Choice.find_by(id: params[:id])
+	question = Question.find_by(id: choice.question_id)
+	choice.destroy
+	redirect "/questions/#{question.id}/show"
+end
