@@ -1,17 +1,29 @@
 <h1> Here is your <%=@survey.title%> Survey! </h1>
 <ul>
 <%@survey.questions.each do |question|%>
-Question: <a href="/questions/<%=question.id%>/show"><%= question.text %></a>  
-<form action='/questions/<%=question.id%>' method='post'>
-  	<input type='hidden' name='_method' value='delete'/>
-  	<input type='submit' value='delete'/>
-  </form>
-<a href="/questions/<%=question.id%>/edit">Edit</a>
+Question: <a href="/questions/<%=question.id%>/show"><%= question.text %></a>
+<% if @survey.active? == 0 %>
+  <form action='/questions/<%=question.id%>' method='post'>
+    	<input type='hidden' name='_method' value='delete'/>
+    	<input type='submit' value='Delete this Question'/>
+    </form>
+  <a href="/questions/<%=question.id%>/edit">Edit this Question</a>
+<% end %>
 <% question.choices.each do |choice|%>
 <li><%= choice.text%> </li>
 <%end%>
 <%end%>
 </ul>
 <ul>
-<li><a href="/surveys">Clicking this button sends your survey into the world- NOTE: You cannot edit your survey after it's been submitted.</a></li>
-</ul>
+<% if @survey.active? == 0 %>
+  <p>WARNING: Clicking this button sends your survey into the world- NOTE: You cannot edit your survey after it's been submitted.</p>
+  <form action='/surveys/<%=@survey.id%>' method='post'>
+    <input type='submit' value='Submit and Lock this Survey'/>
+  </form>
+<% else %>
+  <form action='/taken_surveys' method='post'>
+    <input type='hidden' name='taken_survey[taker_id]' value='<%=current_user.id%>'/>
+    <input type='hidden' name='taken_survey[survey_id]' value='<%=@survey.id%>'/>
+    <input type='submit' value='Take this Survey!'/>
+  </form>
+<% end %>

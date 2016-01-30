@@ -1,4 +1,4 @@
-get '/' do 
+get '/' do
   unless logged_in?
 	redirect '/users/new'
   else
@@ -26,6 +26,12 @@ end
 
 get '/surveys/:id' do
   @survey = Survey.find_by(id: params[:id])
-  @survey.update_attributes(active?: 1)
+  # @survey.update_attributes(active?: 0)
   erb :'/surveys/show'
+end
+
+post '/surveys/:id' do
+  @survey = Survey.find_by(id: params[:id])
+  @survey.update_attributes(active?: 1)
+  redirect "/surveys/#{@survey.id}"
 end

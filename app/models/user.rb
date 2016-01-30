@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
 	include BCrypt
 
-	has_many :surveys 
+	has_many :surveys
 	has_many :questions, through: :surveys
 	has_many :choices, through: :questions
+  has_many :votes
 
 	def password
 		@password ||= Password.new(password_hash)

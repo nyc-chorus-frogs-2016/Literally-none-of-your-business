@@ -1,20 +1,25 @@
 <h1> Here is question: <%= @question.text %> from survey: <%= @survey.title %> </h1>
 
 <div id="question-details">
-  <p>question:<%= @question.text %></p> 
-  
+  <p>question:<%= @question.text %></p>
+
   <p>creator:<%= @survey.creator.username %></p>
   <ul>
     <% @choices.each do |choice| %>
-      <li><%= choice.text %><a href="/questions/<%=@question.id%>/choices/<%=choice.id%>/edit">Edit</a>
-      <form action='/choices/<%=choice.id%>' method='post'>
-      	<input type='hidden' name='_method' value='delete'/>
-      	<input type='submit' value='delete'/></li>
-      </form>
+      <li><%= choice.text %>
+      <% if @survey.active? == 0 %>
+        <a href="/questions/<%=@question.id%>/choices/<%=choice.id%>/edit">Edit</a>
+        <form action='/choices/<%=choice.id%>' method='post'>
+        	<input type='hidden' name='_method' value='delete'/>
+        	<input type='submit' value='delete'/></li>
+        </form>
+      <% end %>
     <% end %>
   </ul>
 </div>
-<a href="/questions/<%=@question.id%>/edit">Edit this question</a>
-<a href="/surveys/<%=@question.survey_id%>/questions/new">Add another question</a>
-<a href="/surveys/<%=@survey.id%>">View/Submit the whole survey</a>
-<a href="/questions/<%=@question.id%>/choices/new">Add a choice</a>
+<% if @survey.active? == 0 %>
+  <a href="/questions/<%=@question.id%>/edit">Edit this question</a>
+  <a href="/surveys/<%=@question.survey_id%>/questions/new">Add another question</a>
+  <a href="/surveys/<%=@survey.id%>">View/Submit the whole survey</a>
+  <a href="/questions/<%=@question.id%>/choices/new">Add a choice</a>
+<% end %>
