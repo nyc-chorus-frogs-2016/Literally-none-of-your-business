@@ -1,10 +1,22 @@
 <h1> Here is your <%=@survey.title%> Survey! </h1>
+
+<%if current_user == @survey.creator %>
+  <div id="survey-details"
+    <a href='#'>Delete This Survey</a>
+    <a id="add-question-link" href="/surveys/<%=@survey.id%>/questions/new">Add a Question to This Survey</a>
+    <ul id="current-questions"></ul>
+  </div>
+
+<%end%>
+
+
+
 <ul>
   <%@survey.questions.each do |question|%>
     <%= erb :'/questions/_question', layout: false, locals:{survey: @survey, question: question} %>
   <%end%>
 </ul>
-<ul>
+
 <% if @survey.active? == 0 %>
   <p>WARNING: Clicking this button sends your survey into the world- NOTE: You cannot edit your survey after it's been submitted.</p>
   <form action='/surveys/<%=@survey.id%>' method='post'>
