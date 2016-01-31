@@ -4,7 +4,6 @@ end
 
 post '/users' do
   # Still need to look up how password confirmation works with BCrypt
-
   if params[:users]["password1"] == params[:users]["password2"]
     new_user = User.new(username: params[:users]["username"], password: params[:users]["password1"])
     if new_user.save

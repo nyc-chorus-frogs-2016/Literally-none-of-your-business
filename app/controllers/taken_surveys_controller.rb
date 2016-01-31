@@ -5,7 +5,6 @@ get '/taken_surveys/:id/votes/new' do
   erb :'/votes/new'
 end
 
-
 post '/taken_surveys' do
   taken_survey = TakenSurvey.new(params[:taken_survey])
   if taken_survey.save
