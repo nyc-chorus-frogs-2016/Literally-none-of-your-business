@@ -18,7 +18,7 @@ end
 post '/surveys' do
   new_survey = Survey.new(params[:survey])
   if new_survey.save
-    redirect "surveys/#{new_survey.id}/questions/new"
+    redirect "surveys/#{new_survey.id}"
   else
     redirect '/oops'
   end
@@ -27,7 +27,12 @@ end
 get '/surveys/:id' do
   @survey = Survey.find_by(id: params[:id])
   # @survey.update_attributes(active?: 0)
-  erb :'/surveys/show'
+  # erb :'/surveys/show'
+  if request.xhr?
+    erb :'/surveys/show', layout: false
+  else
+    erb :'/surveys/show'
+  end
 end
 
 post '/surveys/:id' do

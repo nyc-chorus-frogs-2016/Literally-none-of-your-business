@@ -1,15 +1,21 @@
 get '/surveys/:survey_id/questions/new' do
   @current_survey = Survey.find_by(id: params[:survey_id])
-  erb :'/questions/new'
+
+  if request.xhr?
+    erb :'/questions/new', layout: false
+  else
+    erb :'/questions/new'
+  end
 end
 
 post '/questions' do
-  # this_survey = Survey.find_by(id: params[:survey]["survey_id"])
   new_question = Question.new(params[:question])
-  # binding.pry
   if new_question.save
-  # this_survey.questions << new_question
-  redirect "/questions/#{new_question.id}/choices/new"
+    if request.xhr?
+      erb :'/questions/_question', layout: false, locals: {question: new_question, survey: new_question.survey}
+    else
+      redirect "/questions/#{new_question.id}/choices/new"
+    end
   else
     redirect '/oops'
   end
