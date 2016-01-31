@@ -3,10 +3,15 @@
 <ul>
 	<%@question.choices.each do |choice|%>
 	<li><%=choice.text%></li>
-	<%end%> 
+	<%end%>
 </ul>
 
 <div id="new-choice-form">
 	<%= erb :'/choices/_form', layout: false, locals: {question: @question} %>
 </div>
 <a href="/questions/<%= @question.id %>/show">This question is complete, go to see it.</a>
+
+http://localhost:9393/surveys/1
+
+http://localhost:9393/questions/4/choices/new
+
