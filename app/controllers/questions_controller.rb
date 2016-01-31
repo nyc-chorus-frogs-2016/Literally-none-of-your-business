@@ -1,6 +1,5 @@
 get '/surveys/:survey_id/questions/new' do
   @current_survey = Survey.find_by(id: params[:survey_id])
-
   if request.xhr?
     erb :'/questions/new', layout: false
   else

@@ -1,6 +1,6 @@
 <% if logged_in? %>
-  <h1> Make a new question on survey "<%=@current_survey.title%>"</h1>
-  <div id="new_question_form">
+  <div id="new-question-form">
+    <h1> Make a new question on survey "<%=@current_survey.title%>"</h1>
     <%= erb :'/questions/_form', layout: false, locals: {survey: @current_survey}%>
   </div>
 <% else %>

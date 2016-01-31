@@ -1,12 +1,20 @@
 get '/questions/:question_id/choices/new' do
   @question = Question.find_by(id: params[:question_id])
-  erb :'/choices/new'
+  if request.xhr?
+    erb :'/choices/_form', layout: false, locals: {question: @question}
+  else
+    erb :'/choices/new'
+  end
 end
 
 post '/choices' do
   @new_choice = Choice.new(params[:choice])
   if @new_choice.save
-    redirect "/questions/#{@new_choice.question_id}/choices/new"
+    if request.xhr?
+      erb :'/choices/_choice', layout: false, locals: {choice: @new_choice}
+    else
+      redirect "/questions/#{@new_choice.question_id}/choices/new"
+    end
   else
     redirect "/oops"
   end

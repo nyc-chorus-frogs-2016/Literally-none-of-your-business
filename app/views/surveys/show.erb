@@ -11,7 +11,7 @@
 
 
 
-<ul>
+<ul id='all-questions'>
   <%@survey.questions.each do |question|%>
     <%= erb :'/questions/_question', layout: false, locals:{survey: @survey, question: question} %>
   <%end%>
