@@ -1,9 +1,15 @@
 <h1> Welcome <%=current_user.username.capitalize%>!</h1>
+<h2> Current Active Surveys:</h2>
 <ul>
   <%@surveys.each do |survey| %>
-  <li><a href="/surveys/<%=survey.id%>"><%= survey.title%></a></li>
-  <%= survey.description%>
-  <a href=""><%= survey.creator.username %></a>
+    <% if survey.is_active? %>
+    <li><div class="survey-box">
+        <p><a href="/surveys/<%=survey.id%>"><%= survey.title%></a></p>
+        <p>
+        <%= survey.description%>
+        by <a href=""><%= survey.creator.username %></a></p>
+    </li>
+    <% end %>
   <%end%>
 </ul>
 
