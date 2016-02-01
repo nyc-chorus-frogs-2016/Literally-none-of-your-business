@@ -1,4 +1,4 @@
-<p><%=@survey.title.capitalize%> Survey</p>
+<h1><p><%=@survey.title.capitalize%> Survey</p></h1>
 <% @questions.each do |question| %>
   <% if !question.answered?(current_user) %>
     <ul>
@@ -11,6 +11,6 @@
 <%end%>
 
 <% if @questions.select {|question| question.answered?(current_user) == true }.length == @questions.length %>
-  <p><%= current_user.username %>, You have completed this survey! <%= @survey.creator.username %> says thank you. </p>
-  <a href="/">Go back to the Home bpage to take another survey</a>
+  <p><%= current_user.username %>, you have completed this survey! <%= @survey.creator.username %> says thank you. </p>
+  <a href="/">Go back to the Home page to take another survey</a>
 <% end %>

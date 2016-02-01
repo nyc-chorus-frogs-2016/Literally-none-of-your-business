@@ -1,0 +1,55 @@
+body {
+    background-image: url(/pink_background.jpg);
+    background-repeat: repeat-y;
+    background-size: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+    font-family: Verdana, sans-serif;
+    color: #2E0854;
+    font-size: 2em;
+}
+
+a {
+    text-decoration: none;
+    color: #820BBB;
+}
+
+a:hover {
+    color:#912CEE;
+    text-decoration: underline;
+}
+
+ul {
+  list-style-type: none
+}
+
+li {
+  margin-top:1em;
+  margin-bottom:1em;
+}
+
+div.survey-box {
+  background-color: #FFF0F5;
+  border-radius: 25px;
+  width: 40%;
+  margin: auto;
+  padding: .5em;
+}
+
+input[type=submit] {
+    padding:5px 15px;
+    background: #EEE0E5;
+    border:0 none;
+    border-radius: 5px;
+}
+
+div#warning {
+  width: 40%;
+  margin: auto;
+  border: 4px solid #FF0066;
+  border-radius: 25px;
+  padding: 1em;
+}

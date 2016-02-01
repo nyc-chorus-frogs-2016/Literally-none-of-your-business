@@ -1,0 +1,15 @@
+<% if current_user == @survey.creator %>
+
+<p>Delete your survey "<%=@survey.title%>"?</p>
+
+<form action="/surveys/<%=@survey.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="yes, delete it">
+</form>
+
+<a href='/surveys/<%=@survey.id%>'>Go Back</a>
+
+
+<% else %>
+  <p>Only the creator of the survey "<%=@survey.title%>" can delete it.<p>
+<% end %>

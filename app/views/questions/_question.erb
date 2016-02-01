@@ -1,5 +1,5 @@
 <div class="question-choices">
-  <p>Question:<a href="/questions/<%=question.id%>/show"><%= question.text %></a></p>
+  <p>Question: <a href="/questions/<%=question.id%>/show"><%= question.text %></a></p>
   <% if survey.active? == 0 %>
     <form action='/questions/<%=question.id%>' method='post'>
       <input type='hidden' name='_method' value='delete'/>

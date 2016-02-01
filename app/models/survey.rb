@@ -4,4 +4,9 @@ class Survey < ActiveRecord::Base
   has_many :questions
   has_many :choices, through: :questions
 
+
+def is_active?
+  self.active? == 0 ? false : true
+end
+
 end

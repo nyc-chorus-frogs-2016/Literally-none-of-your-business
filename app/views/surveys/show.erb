@@ -1,9 +1,12 @@
-<h1> Here is your <%=@survey.title%> Survey! </h1>
+<h1> Here is the <%=@survey.title%> Survey! </h1>
 
 <%if current_user == @survey.creator %>
-  <div id="survey-details"
-    <a href='#'>Delete This Survey</a>
-    <a id="add-question-link" href="/surveys/<%=@survey.id%>/questions/new">Add a Question to This Survey</a>
+  <h2>You are the creator of this survey.</h2>
+  <div id="survey-details">
+    <a href="/surveys/<%=@survey.id%>/delete">Delete This Survey</a>
+      <% if !@survey.is_active? %>
+        | <a id="add-question-link" href="/surveys/<%=@survey.id%>/questions/new">Add a Question to This Survey</a>
+      <%end%>
     <ul id="current-questions"></ul>
   </div>
 <%end%>
@@ -14,15 +17,22 @@
   <%end%>
 </ul>
 
-<% if @survey.active? == 0 %>
-  <p>WARNING: Clicking this button sends your survey into the world- NOTE: You cannot edit your survey after it's been submitted.</p>
-  <form action='/surveys/<%=@survey.id%>' method='post'>
-    <input type='submit' value='Submit and Lock this Survey'/>
-  </form>
-<% else %>
-  <form action='/taken_surveys' method='post'>
-    <input type='hidden' name='taken_survey[taker_id]' value='<%=current_user.id%>'/>
-    <input type='hidden' name='taken_survey[survey_id]' value='<%=@survey.id%>'/>
-    <input type='submit' value='Take this Survey!'/>
-  </form>
-<% end %>
+
+  <% if !@survey.is_active? %>
+      <% if current_user == @survey.creator %>
+        <div id="warning">
+        <p>WARNING: Clicking this button sends your survey into the world- NOTE: You cannot edit your survey after it's been submitted.</p>
+        <form action='/surveys/<%=@survey.id%>' method='post'>
+          <input type='submit' value='Submit and Lock this Survey'/>
+        </form>
+      </div>
+      <% else %>
+        <p>This survey has not yet been released by its creator, sorry!</p>
+      <% end %>
+  <% else %>
+    <form action='/taken_surveys' method='post'>
+      <input type='hidden' name='taken_survey[taker_id]' value='<%=current_user.id%>'/>
+      <input type='hidden' name='taken_survey[survey_id]' value='<%=@survey.id%>'/>
+      <input type='submit' value='Take this Survey!'/>
+    </form>
+  <% end %>

@@ -24,6 +24,11 @@ post '/surveys' do
   end
 end
 
+get '/surveys/:id/delete' do
+  @survey = Survey.find_by(id: params[:id])
+  erb :'/surveys/delete'
+end
+
 get '/surveys/:id' do
   @survey = Survey.find_by(id: params[:id])
   # @survey.update_attributes(active?: 0)
@@ -33,6 +38,12 @@ get '/surveys/:id' do
   else
     erb :'/surveys/show'
   end
+end
+
+get '/surveys/:id/delete' do
+  @survey = Survey.find_by(id: params[:id])
+  @survey.destroy
+  redirect "/"
 end
 
 post '/surveys/:id' do
